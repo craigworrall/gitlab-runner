@@ -1,4 +1,4 @@
-# VirtualBox for GitLab Runner
+# GitLab Runner Vagrant
 
 Contains a Vagrant file and Ansible playbook to create and provision a vagrant.
 
