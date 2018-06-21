@@ -1,0 +1,18 @@
+---
+- name: Set concurrent option
+  lineinfile:
+        dest: /etc/gitlab-runner/config.toml
+        regexp: '^(\s*)concurrent ='
+        line: '\1concurrent = {{ ansible_processor_vcpus }}'
+        state: present
+        backrefs: yes
+  notify: restart_gitlab_runner
+
+- name: Set docker privileged option
+  lineinfile:
+        dest: /etc/gitlab-runner/config.toml
+        regexp: '^(\s*)privileged ='
+        line: '\1privileged = {{ gitlab_runner_docker_privileged | lower}}'
+        state: present
+        backrefs: yes
+  notify: restart_gitlab_runner

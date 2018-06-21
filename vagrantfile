@@ -1,0 +1,44 @@
+# This file will be used by "vagrant up" to load Ubuntu14 trusty
+# and run ansible with a playbook to install and setup gitlab runner
+
+# Define local name + IP address
+BOX_NAME="glrbox"
+# Check in VirtualBox: File > Host Network Manager, and take IP within that range
+DEFAULT_IP="192.168.33.100"
+
+require "resolv"
+
+def my_ip
+  @my_ip ||= Resolv::Hosts.new.getaddress(BOX_NAME) || DEFAULT_IP
+rescue
+  @my_ip ||= DEFAULT_IP
+end
+
+Vagrant.configure(2) do |config|
+
+  config.ssh.forward_agent = true
+  config.ssh.forward_x11 = true
+
+  config.vm.define :glrbox do |glrbox|
+    glrbox.vm.box      = "ubuntu/trusty64"
+    glrbox.vm.network  "private_network", ip: my_ip
+    glrbox.vm.hostname = BOX_NAME
+
+    glrbox.vm.provider "virtualbox" do |vb|
+      # Do  not Display the VirtualBox GUI when booting the machine
+      # If it is required then change the value to true
+       vb.gui = false
+
+      # Customize the amount of memory on the VM:
+      vb.customize ["modifyvm", :id, "--memory", "1024"]
+      vb.customize ["modifyvm", :id, "--vram", "18"]
+      vb.customize ["modifyvm", :id, "--cpus", "1"]
+      vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+    end
+  end
+
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = 'site.yml'
+    ansible.verbose  = 'v'
+  end
+end

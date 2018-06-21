@@ -1,0 +1,63 @@
+---
+##########################################
+# GitLab
+
+# GitLab coordinator URL
+gitlab_runner_coordinator_url: 'https://gitlab.com/ci'
+# GitLab registration token
+gitlab_runner_registration_token: ''
+# Runner description
+gitlab_runner_description: '{{ ansible_hostname }}'
+# Runner executor
+gitlab_runner_executor: 'shell'
+# Maximum number of jobs to run concurrently on this specific runner
+gitlab_runner_concurrent_specific: '0'
+# Default Docker image
+gitlab_runner_docker_image: ''
+# Runner tags
+gitlab_runner_tags: []
+# Docker privileged mode
+gitlab_runner_docker_privileged: false
+# Runner SSH user
+gitlab_runner_ssh_user: ''
+# Runner SSH host
+gitlab_runner_ssh_host: ''
+# Runner SSH port
+gitlab_runner_ssh_port: ''
+# Runner SSH password
+gitlab_runner_ssh_password: ''
+# Runner SSH identity file
+gitlab_runner_ssh_identity_file: ''
+# Runner Locked
+gitlab_runner_locked: 'false'
+
+
+##########################################
+# Docker
+
+# Place to get apt repository key
+apt_key_url: https://apt.dockerproject.org/gpg
+# apt repository key signature
+apt_key_sig: 2C52609D
+# Name of the apt repository for docker
+apt_repository: deb https://apt.dockerproject.org/repo {{ ansible_distribution|lower|default('ubuntu') }}-{{ ansible_distribution_release|default('trusty') }} main
+# Docker package Name
+docker_package: docker-engine
+
+# The following help expose a docker port or to add additional options when
+# running docker daemon.  The default is to not use any special options.
+#docker_opts: >
+#  -H unix://
+#  -H tcp://0.0.0.0:2375
+#  --log-level=debug
+docker_opts: ""
+docker_tmpdir: ""
+
+docker_config_file: /etc/default/docker
+
+# A user who is allowed to run docker without sudo
+docker_user: vagrant
+
+# This is the name that must be used, according to documentation
+# https://docs.docker.com/installation/ubuntulinux/#create-a-docker-group
+docker_group: docker
