@@ -1,4 +1,7 @@
 ---
+- name: Install Docker
+  import_tasks: docker.yml
+
 - name: Install GitLab Runner 
   import_tasks: install.yml
 
@@ -8,6 +11,3 @@
 - name: Register GitLab Runner
   import_tasks: register-runner.yml
   when: gitlab_runner_registration_token != ''
-
-- name: Install Docker
-  import_tasks: docker.yml
