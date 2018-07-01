@@ -15,7 +15,12 @@ the ```alpine:latest``` image if none is specified in your ```.gitlab-ci.yml``` 
 
 ## Configuration
 
-Your GitLab runner token should be configured in the ```default/main.yml``` file. 
+Your GitLab runner token should be configured in the ```default/main.yml``` file:
+
+```
+# GitLab registration token
+gitlab_runner_registration_token: '...'
+```
 
 ## Runner Creation
 
