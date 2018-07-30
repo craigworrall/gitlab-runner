@@ -13,6 +13,28 @@ The Ansible playbook downloads, installs and configures the software required on
 The Runner can thus execute jobs via shell or Docker. By default, the runner is configured to use Docker, employing
 the ```alpine:latest``` image if none is specified in your ```.gitlab-ci.yml``` file.
 
+## Ubuntu Versions
+
+Both Trusty and Xenial are supported.
+
+### Xenial
+
+To use Xenial, geerlingguy.docker role must be used. It should be cloned into the same directory that includes ```runner```,
+after which the following changes are needed:
+
+```
+-- name: Install Docker
+-  import_tasks: docker.yml
++#- name: Install Docker
++#  import_tasks: docker.yml
+```
+and to site.yml:
+```
+-    - runner
++    - ansible-role-docker
++    - runner
+```
+
 ## Configuration
 
 Your GitLab runner token should be configured in the ```default/main.yml``` file:
@@ -32,23 +54,17 @@ Execute:
 
 ## Local Playbook Execution
 
-On your ubuntu/trusty server install Ansible and create a ```inventory``` file with contents:
-
-```
-localhost	ansible_connection=local
-```
-
-Then change ```site.yml``` as follows:
+Change ```site.yml``` as follows:
 
 ```
 -- hosts: all
 +- hosts: localhost
 ```
 
-Then execute:
+Execute:
 
 ```
-ansible-playbook -K -i inventory site.yml 
+ansible-playbook -K -i inventory.local site.yml 
 ```
 
 ## AWS
