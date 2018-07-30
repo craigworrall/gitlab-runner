@@ -50,3 +50,34 @@ Then execute:
 ```
 ansible-playbook -K -i inventory site.yml 
 ```
+
+## AWS
+
+The following sections describe steps necessary to deploy onto an EC2 instance.
+
+### Branch
+
+Checkout AWS branch:
+```
+% git checkout aws
+```
+
+### Setup
+
+Ensure Vagrant's AWS provider has been installed and add the dummy box:
+```
+% vagrant plugin install vagrant-aws
+% vagrant box add aws-dummy https://github.com/mitchellh/vagrant-aws/raw/master/dummy.box
+```
+
+Set the Security Group name in the vagrant file, or use the default (```vagrant```) group after
+ensuring it allows SSH access.
+
+Set the Key Pair name in the vagrant file as appropriate.
+
+## EC2 Vagrant Creation
+
+Execute:
+```
+% vagrant up --provider=aw
+```
