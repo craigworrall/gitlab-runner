@@ -1,5 +1,12 @@
 # GitLab Runner
 
+## To Do
+
+* Merge aws and master branch, consolidate into one Vagrantfile
+* Migrate to geerlinguy.docker and xenial
+
+## Overview
+
 Contains a Vagrant file and Ansible playbook to create and provision a GitLab Runner.
 
 Currently the Vagrant file launches a ubuntu/trusty VirtualBox machine. In future, AWS EC2 support
