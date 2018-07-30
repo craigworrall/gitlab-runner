@@ -95,5 +95,5 @@ Set the Key Pair name in the vagrant file as appropriate.
 
 Execute:
 ```
-% vagrant up --provider=aw
+% vagrant up --provider=aws
 ```
