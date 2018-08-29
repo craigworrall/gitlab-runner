@@ -74,6 +74,13 @@ Execute:
 ansible-playbook -K -i inventory.local site.yml 
 ```
 
+## HSMs and Other Local Services
+
+Local services, such as a HSM, may need to be accessed by the Runner. While
+not yet attempted, docker-based Runners may be able to use the ```extra_hosts``` parameter
+to achieve such access. Shell based Runners will have no such requirement, but this is
+little value given we would be giving up the ability to perform Docker-based builds.
+
 ## AWS
 
 The following sections describe steps necessary to deploy onto an EC2 instance.
@@ -98,7 +105,7 @@ ensuring it allows SSH access.
 
 Set the Key Pair name in the vagrant file as appropriate.
 
-## EC2 Vagrant Creation
+### EC2 Vagrant Creation
 
 Execute:
 ```
