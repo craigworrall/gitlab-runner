@@ -50,6 +50,11 @@ Your GitLab runner token should be configured in the ```default/main.yml``` file
 # GitLab registration token
 gitlab_runner_registration_token: '...'
 ```
+To successfully use docker-in-docker for docker builds etc, the following flag should be set to ```true```:
+```
+-gitlab_runner_docker_privileged: false
++gitlab_runner_docker_privileged: true
+```
 
 ## Vagrant Creation
 
