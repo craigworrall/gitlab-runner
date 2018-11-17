@@ -2,7 +2,7 @@
 # and run ansible with a playbook to install and setup gitlab runner
 
 # Define local name + IP address
-BOX_NAME="glrbox"
+BOX_NAME="glrbox-sdg" # stratum-demo-group
 # Check in VirtualBox: File > Host Network Manager, and take IP within that range
 DEFAULT_IP="192.168.33.100"
 
@@ -30,9 +30,9 @@ Vagrant.configure(2) do |config|
        vb.gui = false
 
       # Customize the amount of memory on the VM:
-      vb.customize ["modifyvm", :id, "--memory", "1024"]
+      vb.customize ["modifyvm", :id, "--memory", "8096"]
       vb.customize ["modifyvm", :id, "--vram", "18"]
-      vb.customize ["modifyvm", :id, "--cpus", "1"]
+      vb.customize ["modifyvm", :id, "--cpus", "2"]
       vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     end
   end
