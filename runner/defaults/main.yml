@@ -17,7 +17,7 @@ gitlab_runner_docker_image: 'alpine:latest'
 # Runner tags
 gitlab_runner_tags: []
 # Docker privileged mode
-gitlab_runner_docker_privileged: false
+gitlab_runner_docker_privileged: true
 # Runner SSH user
 gitlab_runner_ssh_user: ''
 # Runner SSH host
